@@ -93,7 +93,7 @@ export const projects = {
   eyebrow: 'Selected work',
   headline: ['Things I have', 'actually built'],
   kicker:
-    'Four products, four different problems — commerce, payments, capital markets and education.',
+    'Three products, three different problems — commerce, payments and education.',
   items: [
     {
       id: 'kwathuchat',
@@ -134,6 +134,8 @@ export const projects = {
     },
     {
       id: 'pine',
+      /** Hidden from the site — card and ticker mark both. Delete to restore. */
+      hidden: true,
       index: '03',
       name: 'Pine',
       kind: 'Brokerage platform',
