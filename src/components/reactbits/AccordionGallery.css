@@ -1,0 +1,153 @@
+.accordion-gallery {
+  --ag-accent: #c4472b;
+  --ag-overlay: #131110;
+  --ag-text: #f3f0ea;
+  --ag-panel: #0f0d0c;
+  --ag-gap: 10px;
+  --ag-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  gap: var(--ag-gap);
+  width: 100%;
+  max-width: 100%;
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+}
+
+.accordion-gallery--vertical {
+  flex-direction: column;
+}
+
+.ag-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--ag-radius);
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  background: var(--ag-panel);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+  will-change: flex-grow, transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ag-panel:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--ag-accent),
+    0 10px 30px -18px rgba(0, 0, 0, 0.8);
+}
+
+.ag-panel__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* The media box fills the panel rather than being a fixed over-sized slab.
+   The original sized it larger than the frame so `cover` could pan across it —
+   that crops, which is exactly what we don't want here. */
+.ag-panel__media {
+  --ag-gray: 1;
+  --ag-dim: 0.35;
+  position: absolute;
+  inset: 0;
+  filter: grayscale(var(--ag-gray));
+  will-change: filter;
+}
+
+/* `contain`: these are screenshots — a cropped screenshot is an unreadable
+   screenshot. Letterboxing against the panel colour is the intended look. */
+.ag-panel__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  padding: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ag-panel__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 55%, rgba(19, 17, 16, 0.82) 100%),
+    rgba(19, 17, 16, var(--ag-dim, 0.35));
+}
+
+.ag-panel__label {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ag-panel__bar {
+  flex: 0 0 auto;
+  width: 3px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--ag-accent);
+  opacity: 0;
+}
+
+.ag-panel__text {
+  color: var(--ag-text);
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* Collapsed panels are slivers, which is fine for a photo wall but useless for
+   a screenshot. Below this width every panel gets its own row at full width. */
+@media (max-width: 700px) {
+  .accordion-gallery {
+    flex-direction: column;
+    perspective: none;
+    height: auto !important;
+  }
+
+  .ag-panel {
+    aspect-ratio: 16 / 9;
+    transform: none !important;
+    flex: 1 1 auto !important;
+  }
+
+  .ag-panel__media {
+    --ag-gray: 0 !important;
+    --ag-dim: 0 !important;
+  }
+
+  .ag-panel__bar,
+  .ag-panel__text {
+    opacity: 1 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-panel,
+  .ag-panel__media {
+    will-change: auto;
+  }
+}
