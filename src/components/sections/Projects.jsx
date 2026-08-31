@@ -9,6 +9,9 @@ import ctechSite from '../../assets/ctech-site.webp'
 // Also on disk: ophunzila-home.webp (landing page) and ophunzila-dark.webp
 // (the same dashboard in dark mode) — swap either in by changing this import.
 import ophunzilaApp from '../../assets/ophunzila-app.webp'
+import chakudyaSite from '../../assets/chakudya-site.webp'
+import kwathuHotelSite from '../../assets/kwathu-hotel-site.webp'
+import kwathuSite from '../../assets/kwathu-site.webp'
 import SectionHead from './SectionHead.jsx'
 import {
   AnimatedContent,
@@ -25,6 +28,9 @@ const images = {
   kwathuchat: kwathuChatApp,
   ctech: ctechSite,
   ophunzila: ophunzilaApp,
+  chakudya: chakudyaSite,
+  kwathuhotel: kwathuHotelSite,
+  kwathusite: kwathuSite,
 }
 
 /**
@@ -73,6 +79,8 @@ export default function Projects() {
       </div>
 
       <div className="shell space-y-[clamp(18px,2.4vw,32px)]">
+        {/* The card number is positional, not the `index` in the data — hiding
+            a project would otherwise leave gaps like 01, 04, 06 on the page. */}
         {visibleProjects.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
         ))}
@@ -114,7 +122,7 @@ function ProjectCard({ project, index }) {
                     dark ? 'text-cream/25' : 'text-ink/15'
                   }`}
                 >
-                  {project.index}
+                  {String(index + 1).padStart(2, '0')}
                 </span>
                 <span
                   className={`font-mono text-[9.5px] uppercase tracking-label ${
