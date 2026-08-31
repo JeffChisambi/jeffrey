@@ -12,6 +12,7 @@ import ophunzilaApp from '../../assets/ophunzila-app.webp'
 import chakudyaSite from '../../assets/chakudya-site.webp'
 import kwathuHotelSite from '../../assets/kwathu-hotel-site.webp'
 import kwathuSite from '../../assets/kwathu-site.webp'
+import thelmerSite from '../../assets/thelmer-site.webp'
 import SectionHead from './SectionHead.jsx'
 import {
   AnimatedContent,
@@ -31,6 +32,7 @@ const images = {
   chakudya: chakudyaSite,
   kwathuhotel: kwathuHotelSite,
   kwathusite: kwathuSite,
+  thelmer: thelmerSite,
 }
 
 /**
@@ -228,6 +230,18 @@ function ProjectCard({ project, index }) {
                   </a>
                 </Magnet>
               )}
+
+              {/* Stands in for the link when there is nothing to visit yet. */}
+              {project.status && (
+                <span
+                  className={`inline-flex items-center gap-2.5 rounded-full border px-5 py-3 font-mono text-[10.5px] uppercase tracking-label ${
+                    dark ? 'border-cream/25 text-cream/60' : 'border-ink/20 text-ink/55'
+                  }`}
+                >
+                  <span className="inline-block h-[6px] w-[6px] animate-pulse rounded-full bg-accent" />
+                  {project.status}
+                </span>
+              )}
             </div>
 
             {/* Visual column */}
@@ -255,14 +269,19 @@ function ProjectCard({ project, index }) {
                 >
                   {project.image ? (
                     wide ? (
-                      /* A page, not an object: anchored to the top and cropped
-                         at the fold, the way a real browser would show it. */
+                      /* Default is a page cropped at the fold, the way a real
+                         browser shows it. `imageFit: 'contain'` opts out and
+                         shows the whole capture, matted on the panel. */
                       <img
                         src={images[project.image]}
                         alt={project.imageAlt}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
+                        className={`h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03] ${
+                          project.imageFit === 'contain'
+                            ? 'object-contain p-[3%]'
+                            : 'object-cover object-top'
+                        }`}
                       />
                     ) : (
                       /* `contain`, not `cover` — the asset is a cut-out device

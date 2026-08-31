@@ -12,6 +12,8 @@ export default function SectionHead({
   accentLast = false,
   className = '',
   dark = false,
+  /** Centres the eyebrow row and the headline block. */
+  center = false,
 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.4 })
@@ -19,8 +21,8 @@ export default function SectionHead({
   const rendered = accentLast ? lines.slice(0, -1) : lines
 
   return (
-    <div ref={ref} className={className}>
-      <div className="mb-4 flex items-center gap-3">
+    <div ref={ref} className={`${center ? 'text-center' : ''} ${className}`}>
+      <div className={`mb-4 flex items-center gap-3 ${center ? 'justify-center' : ''}`}>
         <motion.span
           className="block h-px bg-accent"
           initial={{ width: 0 }}
@@ -35,6 +37,16 @@ export default function SectionHead({
         >
           {eyebrow}
         </motion.span>
+        {/* Mirrored rule — a single left rule under a centred headline reads
+            as a mistake rather than a flourish. */}
+        {center && (
+          <motion.span
+            className="block h-px bg-accent"
+            initial={{ width: 0 }}
+            animate={inView ? { width: 42 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          />
+        )}
       </div>
 
       <h2 className="display" style={{ fontSize: size, lineHeight: 0.92 }}>

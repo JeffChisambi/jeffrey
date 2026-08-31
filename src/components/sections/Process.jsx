@@ -11,11 +11,15 @@ export default function Process() {
   return (
     <section id="process" className="relative border-b border-ink/10 py-[clamp(64px,9vw,140px)]">
       <div className="shell">
+        {/* Centred: the steps below run the full width, so a left-set headline
+            in a 16ch column left most of the row empty. */}
         <SectionHead
           eyebrow={process.eyebrow}
           lines={process.headline}
           accentLast
-          className="mb-[clamp(36px,5vw,72px)] max-w-[16ch]"
+          center
+          size="clamp(32px, 5vw, 68px)"
+          className="mx-auto mb-[clamp(36px,5vw,72px)] max-w-[22ch]"
         />
 
         <div ref={listRef} className="relative border-b border-ink/10">

@@ -72,7 +72,7 @@ export const about = {
   headline: ['Built in Malawi.', 'Held to a global', 'standard.'],
   paragraphs: [
     'I spent five years watching the gap between hasty builds and real engineering. In 2026 I founded Magengrim to close it — a studio devoted to precision, security and elegance, and to developers who value doing it right over doing it fast.',
-    'Before that I designed and shipped interfaces at Cool Enterprises and web platforms at Digital Lake Malawi. Every system I own is reviewed against international benchmarks — geography is not an excuse.',
+    'Before that I spent years designing interfaces and shipping web platforms for other people’s companies. Every system I own is reviewed against international benchmarks — geography is not an excuse.',
   ],
   based: 'Mzuzu, Malawi',
   links: [
@@ -177,6 +177,8 @@ export const projects = {
       caption: 'KwathuChat — product site',
       image: 'kwathusite',
       imageLayout: 'wide',
+      /** `contain`: show the whole page rather than cropping at the fold. */
+      imageFit: 'contain',
       imageAlt: 'The KwathuChat product site — "Everyday life, in one conversation", with App Store and Google Play links',
       body: 'The public face of the KwathuChat app: a marketing site that has to explain a product doing five unrelated things — marketplace, jobs, bills, rides and business tools — without reading like a feature list. The answer was to lead with the one sentence that contains all of them, and let the sections underneath do the detail.',
       tags: ['React', 'Marketing site', 'App Store routing', 'Responsive'],
@@ -185,7 +187,7 @@ export const projects = {
         { label: 'Audience', value: 'Consumers and businesses' },
         { label: 'Goal', value: 'App installs' },
       ],
-      link: { label: 'Visit site', href: 'https://kwathusite.magengrim.com/' },
+      status: 'Under development',
       theme: 'ink',
     },
     {
@@ -227,6 +229,25 @@ export const projects = {
       theme: 'ink',
     },
     {
+      id: 'thelmer',
+      index: '09',
+      name: 'Thelmer',
+      kind: 'First portfolio',
+      caption: 'Thelmer — where it started',
+      image: 'thelmer',
+      imageLayout: 'wide',
+      imageAlt: 'The Thelmer portfolio site — "Think, build, and ship amazing web experiences"',
+      body: 'My first portfolio, published under the name Thelmer and still online. I keep it up rather than quietly retiring it: it is the honest baseline for everything on this page, and the distance between it and the site you are reading is the clearest evidence of the five years in between.',
+      tags: ['First build', 'Front-end', 'Still live'],
+      facts: [
+        { label: 'Role', value: 'Sole designer and engineer' },
+        { label: 'Status', value: 'Live and unedited' },
+        { label: 'Why it stays', value: 'It shows the starting line' },
+      ],
+      link: { label: 'Visit site', href: 'https://jeffchisambi.github.io/Thelmer/' },
+      theme: 'cream',
+    },
+    {
       id: 'ctech',
       /** Hidden from the site. Flip to `false` (or delete the line) to show it
        *  again — the card, image and copy are all still here. */
@@ -254,31 +275,17 @@ export const projects = {
 
 export const trackRecord = {
   eyebrow: 'Track record',
-  headline: ['Five years of', 'foundations'],
+  // Two entries now — the studio and the sandbox. "Five years of foundations"
+  // described a longer list that no longer appears here.
+  headline: ['The studio', 'and the sandbox'],
   roles: [
     {
       period: '2026 — Present · Founder',
       org: 'Magengrim',
       role: 'Chief Executive Officer. Architectural integrity of every system we ship, plus the standard the team is measured against.',
-      did: 'Building Pine, a brokerage platform putting the Malawi Stock Exchange behind a card-funded flow; scaling operations from Malawi to a global client base and mentoring engineers in craftsmanship over speed.',
+      did: 'Shipping client web platforms end to end — design through deployment — while scaling operations from Malawi to a global client base and mentoring engineers in craftsmanship over speed.',
       result: 'A studio built on precision, security and elegance — engineering that exceeds international benchmarks.',
       caption: 'Magengrim screen',
-    },
-    {
-      period: '2025 — 2026 · UI/UX',
-      org: 'Cool Enterprises Limited',
-      role: 'UI/UX developer, Lilongwe. Owned the interface layer from research through shipped front-end code.',
-      did: 'Built front-end websites for a range of client companies, and turned internal tooling into a consistent component system — fewer bespoke screens, faster iteration for the team.',
-      result: 'Interfaces staff could learn without training, and a design language the next developer could extend.',
-      caption: 'interface screen',
-    },
-    {
-      period: '2023 — 2025 · Web',
-      org: 'Digital Lake Malawi',
-      role: 'Web developer across two years of client work — build, launch, maintain.',
-      did: 'Delivered production sites and platforms on tight timelines without leaving unmaintainable code behind.',
-      result: 'The foundation of my discipline around review, documentation and performance budgets.',
-      caption: 'project screen',
     },
     {
       period: 'Ongoing · Personal',
